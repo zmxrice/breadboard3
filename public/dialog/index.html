@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+    <script src="script.js"></script>
+    <link href="index.css" rel="stylesheet" type="text/css"/>
+  </head>
+
+  <body ng-app='root' ng-controller='index'>
+
+		<ul id='taskbar'>
+		  <div ng-repeat='dialog in dialogs'>
+		    <button ng-show='dialog.minimized==true || (globals.maxbool==true && dialog.maximized == false)'
+		            ng-click='restore(dialog, dialogs)'>
+		            {{dialog.template}}
+		    </button>
+		  </div>
+	  </ul>
+
+		<div id='container'>
+		  <div ng-repeat='dialog in dialogs|filter:{minimized:false}'>
+		    <make-dialog model='dialog' dialogs='dialogs' globals='globals'></make-dialog>
+		  </div>
+		</div>
+
+
+	</body>
+
+</html>

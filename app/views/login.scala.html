@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="748044806775-mpbqu1h1ghd1p4mp7l9mq4c3b5sp97bb.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      var client_id = "748044806775-mpbqu1h1ghd1p4mp7l9mq4c3b5sp97bb.apps.googleusercontent.com";
+      function onSignIn(googleUser) {
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        var url = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token="+id_token;
+        $.get( url, function( data ) {
+          if(data.aud == client_id){
+            console.log(data);
+            console.log(data.sub);
+          }
+        });
+      }
+    </script>
+
+    <a href="#" onclick="signOut();">Sign out</a>
+    <script>
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+      }
+    </script>
+  </body>
+</html>

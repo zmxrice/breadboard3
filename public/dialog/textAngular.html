@@ -1,0 +1,13 @@
+
+    <div ng-controller="demoController" class="ng-scope">
+        <br>
+        <div class="container lighter">
+            <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></div>
+        </div>
+        <br>
+        <div class="container text-center lighter border-around">
+            <div class="lighter roboto">
+                <p ng-bind-html="htmlContent" class="text-left text-med text-gray"></p>
+            </div>
+        </div>
+    </div>

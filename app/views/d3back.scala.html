@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+</style>
+<body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+
+var width = 960,
+    height = 500
+    radius = 6;
+
+var color = d3.scale.category20();
+
+// nodes and links data to be rendered from server
+var nodes = new Array(),
+    links = new Array();
+
+// not modified by d3 nodes and links
+var nodescpy = new Array(),
+    linkscpy = new Array();
+// hashmap for faster lookup
+var nodesMap = {},
+    linksMap = {};
+
+var force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var node = svg.selectAll(".node"),
+    link = svg.selectAll(".link");
+
+d3.json("/myjson", function(error, graph) {
+  if (error) throw error;
+  nodes = graph.nodes;
+  links = graph.links;
+  //console.log(JSON.stringify(nodes));
+  //console.log(JSON.stringify(links));
+  // using jquery array deep copy
+  nodescpy = $.extend(true, [], nodes);
+  linkscpy = $.extend(true, [], links);
+  for (var i=0; i < nodescpy.length; i++){
+    nodesMap[nodescpy[i].id] = nodescpy[i];
+  }
+  for (var i=0; i < linkscpy.length; i++){
+    var key = linkscpy[i].source + "_" + linkscpy[i].target;
+    linksMap[key] = linkscpy[i];
+  }
+  //console.log(JSON.stringify(nodesMap));
+  //console.log(JSON.stringify(linksMap));
+  //console.log(linksMap["1_0"]);
+  force
+      .nodes(nodes)
+      .links(links)
+      .on("tick", tick);
+  start();
+});
+
+function start() {
+  link = link.data(links);
+  link.enter().append("line")
+      .attr("class", "link");
+  link.exit().remove();
+
+  node = node.data(nodes);
+  node.enter().append("circle")
+      .attr("class", "node")
+      .attr("r", 5)
+      .call(force.drag);
+  node.exit().remove();
+
+  force.start();
+}
+
+function tick() {
+  node.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+      .attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
+
+  link.attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+}
+function update(){
+  //console.log("+++++++++");
+  //console.log(JSON.stringify(nodesMap));
+  //console.log(JSON.stringify(nodescpy));
+  //console.log(JSON.stringify(linkscpy));
+  d3.json("/myjson", function(error, graph) {
+    if (error) throw error;
+    var tempNodes = graph.nodes;
+    var tempLinks = graph.links;
+    //not modifiable by d3
+    var tempnodescpy = $.extend(true, [], tempNodes);
+    var templinkscpy = $.extend(true, [], tempLinks);
+    var tempNodesMap = {},
+        tempLinksMap = {};
+    for (var i=0; i < tempnodescpy.length; i++){
+      tempNodesMap[tempnodescpy[i].id] = tempnodescpy[i];
+    }
+    for (var i=0; i < templinkscpy.length; i++){
+      var key = templinkscpy[i].source + "_" + templinkscpy[i].target;
+      tempLinksMap[key] = templinkscpy[i];
+    }
+    //console.log(JSON.stringify(tempLinks));
+    //console.log(JSON.stringify(templinkscpy));
+    //console.log(JSON.stringify(linksMap));
+    //console.log(JSON.stringify(tempLinksMap));
+    var i = 0;
+    while (i < linkscpy.length){
+      //console.log(i);
+      //assume undirected graph
+      var key1 = linkscpy[i].source + "_" + linkscpy[i].target;
+      var key2 = linkscpy[i].target + "_" + linkscpy[i].source;
+      if(tempLinksMap[key1] == undefined && tempLinksMap[key2] == undefined){
+        console.log("deleting link " + key1);
+        if(linksMap[key1] != undefined){
+          delete linksMap[key1];
+        }else if(linksMap[key2] != undefined){
+          delete linksMap[key2];
+        }
+        links.splice(i,1);
+        linkscpy.splice(i,1);
+        //start();
+      }
+      else{
+        i += 1;
+      }
+    }
+
+    for (var i=0; i < tempLinks.length; i++){
+      //assume undirected graph
+      var key1 = templinkscpy[i].source + "_" + templinkscpy[i].target;
+      var key2 = templinkscpy[i].target + "_" + templinkscpy[i].source;
+      if(linksMap[key1] == undefined && linksMap[key2] == undefined){
+        console.log("adding link " + key1);
+        linksMap[key1] = templinkscpy[i];
+        links.push(tempLinks[i]);
+        linkscpy.push(templinkscpy[i]);
+        //start();
+      }
+    }
+
+    // if node not found in the tempNodesMap, then delete it from the node list
+    var i = 0;
+    while (i < nodescpy.length){
+      if(tempNodesMap[nodescpy[i].id] == undefined){
+        console.log("deleting node " + nodescpy[i].id);
+        delete nodesMap[nodescpy[i].id];
+        //console.log(JSON.stringify(nodesMap));
+        nodes.splice(i,1);
+        nodescpy.splice(i,1);
+        //start();
+      }else{
+        i += 1;
+      }
+    }
+    // if new one added, then add to the nodes list
+    for (var i=0; i < tempNodes.length; i++){
+      if(nodesMap[tempnodescpy[i].id] == undefined){
+        //console.log(JSON.stringify(tempNodes));
+        console.log("adding node "+tempnodescpy[i].id);
+        nodesMap[tempnodescpy[i].id] = tempnodescpy[i];
+        nodes.push(tempNodes[i]);
+        nodescpy.push(tempnodescpy[i]);
+        //start();
+      }
+    }
+    //console.log(JSON.stringify(links));
+    //console.log(links.length);
+
+    start();
+  });
+
+}
+</script>
+<button onclick="update()">update</button>
+<body>
+<body>

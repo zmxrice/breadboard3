@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300">
+    <link rel="stylesheet" href="http://textangular.com/css/style.css" type="text/css">
+    <script src="https://code.angularjs.org/X.Y.Z/angular-sanitize.js" type="text/javascript"></script>
+
+    <script src="@routes.Assets.versioned("textAngular/dist/textAngular-rangy.min.js")"></script>
+
+    <script src="@routes.Assets.versioned("textAngular/dist/textAngular-sanitize.min.js")"></script>
+
+    <script src="@routes.Assets.versioned("textAngular/dist/textAngular.min.js")"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js" type="text/javascript"></script>
+
+
+
+    <script src="@routes.Assets.versioned("dialog/script.js")" type="text/javascript"></script>
+    <link href="@routes.Assets.versioned("dialog/index.css")" rel="stylesheet" type="text/css"/>
+
+  </head>
+
+  <body ng-app='root' ng-controller='index'>
+
+		<ul id='taskbar'>
+		  <div ng-repeat='dialog in dialogs'>
+		    <button ng-show='dialog.minimized==true || (globals.maxbool==true && dialog.maximized == false)'
+		            ng-click='restore(dialog, dialogs)'>
+		            {{dialog.template}}
+		    </button>
+		  </div>
+	  </ul>
+
+		<div id='container'>
+		  <div ng-repeat='dialog in dialogs|filter:{minimized:false}'>
+		    <make-dialog model='dialog' dialogs='dialogs' globals='globals'></make-dialog>
+		  </div>
+		</div>
+
+
+	</body>
+
+</html>

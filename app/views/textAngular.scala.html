@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>textAngular</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300">
+    <link rel="stylesheet" href="http://textangular.com/css/style.css" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-sanitize.js" type="text/javascript"></script>
+
+        <script src="@routes.Assets.versioned("textAngular/dist/textAngular-rangy.min.js")"></script>
+
+        <script src="@routes.Assets.versioned("textAngular/dist/textAngular-sanitize.min.js")"></script>
+
+        <script src="@routes.Assets.versioned("textAngular/dist/textAngular.min.js")"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="ng-app" ng-app="textAngularDemo" ng-controller="demoController" class="ng-scope">
+        <br>
+        <div class="container">
+            <a href="http://github.com/fraywing/textAngular"> <img src="http://textangular.com/images/textAngularLogo.png" style="max-width:500%;" class="lighter"></a>
+        </div>
+        <div class="container lighter">
+            <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></div>
+        </div>
+        <br>
+        <div class="container text-center lighter border-around">
+            <div class="lighter roboto">
+                <p ng-bind-html="htmlContent" class="text-left text-med text-gray"></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    angular.module("textAngularDemo", ['textAngular','ngSanitize'])
+    .controller("demoController", function demoController($scope) {
+      $scope.htmlContent = '<h2>Try me!</h2><p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p><p><b>Features:</b></p><ol><li>Automatic Seamless Two-Way-Binding</li><li style="color: blue;">Super Easy <b>Theming</b> Options</li><li>Simple Editor Instance Creation</li><li>Safely Parses Html for Custom Toolbar Icons</li><li>Doesn&apos;t Use an iFrame</li><li>Works with Firefox, Chrome, and IE9+</li></ol><p><b>Code at GitHub:</b> <a href="https://github.com/fraywing/textAngular">Here</a> </p>';
+    });
+    </script>
+</body>
+
+</html>
