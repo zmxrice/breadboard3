@@ -1,11 +1,12 @@
 
-    <div ng-controller="demoController" class="ng-scope">
+    <div ng-controller="textEditorController">
         <br>
-        <div class="container lighter">
-            <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></div>
+        <div class="container lighter"  ng-style="{'width': model.width + 'px'}">
+            <text-angular name="htmlContent" ng-model="htmlContent" ta-text-editor-class="form-content" ta-html-editor-class="form-content" ta-focussed-class="focussed"></text-angular>
         </div>
         <br>
-        <div class="container text-center lighter border-around">
+        <div class="container text-center lighter border-around" ng-style="
+        {'width': model.width + 'px'}">
             <div class="lighter roboto">
                 <p ng-bind-html="htmlContent" class="text-left text-med text-gray"></p>
             </div>

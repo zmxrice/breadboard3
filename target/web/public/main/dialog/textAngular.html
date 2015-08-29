@@ -1,0 +1,15 @@
+
+    <div ng-controller="demoController">
+        <br>
+        <div class="container lighter"  ng-style="
+        {'width': model.width + 'px'}">
+            <text-angular name="htmlContent" ng-model="htmlContent" ta-text-editor-class="form-content" ta-html-editor-class="form-content" ta-focussed-class="focussed"></text-angular>
+        </div>
+        <br>
+        <div class="container text-center lighter border-around" ng-style="
+        {'width': model.width + 'px'}">
+            <div class="lighter roboto">
+                <p ng-bind-html="htmlContent" class="text-left text-med text-gray"></p>
+            </div>
+        </div>
+    </div>

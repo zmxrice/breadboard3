@@ -1,4 +1,4 @@
-name := """breadboard3"""
+name := """anormDemo"""
 
 version := "1.0-SNAPSHOT"
 

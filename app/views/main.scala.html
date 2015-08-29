@@ -4,8 +4,27 @@
 <html lang="en">
     <head>
         <title>@title</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+          <!-- for dialog and text angular part -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300">
+        <link rel="stylesheet" href="http://textangular.com/css/style.css" type="text/css">
+        <script src="@routes.Assets.versioned("textAngular/dist/textAngular-rangy.min.js")"></script>
+
+        <script src="@routes.Assets.versioned("textAngular/dist/textAngular-sanitize.min.js")"></script>
+
+        <script src="@routes.Assets.versioned("textAngular/dist/textAngular.min.js")"></script>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js" type="text/javascript"></script>
+        <link href="@routes.Assets.versioned("dialog/index.css")" rel="stylesheet" type="text/css"/>
+
+          <!-- for parameter part -->
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <script src="@routes.Assets.versioned("javascripts/ui-bootstrap-tpls-0.13.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/app.js")" type="text/javascript"></script>
     </head>
-    <body>
+    <body ng-app="root">
         @content
     </body>
 </html>
