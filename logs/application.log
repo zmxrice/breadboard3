@@ -1,57 +1,15 @@
-2015-08-28 16:42:15,934 - [INFO] - from play in pool-4-thread-6 
-Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2015-08-30 10:26:11,162 - [INFO] - from play in pool-312-thread-3 
+Listening for HTTP on /0:0:0:0:0:0:0:0:8080
 
-2015-08-28 16:42:20,451 - [INFO] - from play in play-internal-execution-context-1 
+2015-08-30 10:26:18,956 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:h2:./db/breadboard
 
-2015-08-28 16:42:20,589 - [INFO] - from play in play-internal-execution-context-1 
+2015-08-30 10:26:19,080 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2015-08-28 16:45:22,304 - [INFO] - from play in play-internal-execution-context-1 
+2015-08-30 11:01:59,337 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:h2:./db/breadboard
 
-2015-08-28 16:45:22,312 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-08-28 17:13:31,357 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:./db/breadboard
-
-2015-08-28 17:13:31,365 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-08-28 18:08:44,155 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:./db/breadboard
-
-2015-08-28 18:08:44,163 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-08-28 18:13:22,260 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:./db/breadboard
-
-2015-08-28 18:13:22,266 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-08-28 18:14:08,639 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:./db/breadboard
-
-2015-08-28 18:14:08,645 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-08-28 18:14:48,709 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:./db/breadboard
-
-2015-08-28 18:14:48,715 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-08-29 10:17:58,133 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:./db/breadboard
-
-2015-08-29 10:17:58,141 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2015-08-29 10:24:01,656 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:./db/breadboard
-
-2015-08-29 10:24:01,662 - [INFO] - from play in play-internal-execution-context-1 
+2015-08-30 11:01:59,343 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 

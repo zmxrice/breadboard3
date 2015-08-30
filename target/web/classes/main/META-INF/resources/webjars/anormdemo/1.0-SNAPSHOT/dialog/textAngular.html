@@ -1,15 +1,40 @@
 
-    <div ng-controller="demoController">
-        <br>
-        <div class="container lighter"  ng-style="
-        {'width': model.width + 'px'}">
-            <text-angular name="htmlContent" ng-model="htmlContent" ta-text-editor-class="form-content" ta-html-editor-class="form-content" ta-focussed-class="focussed"></text-angular>
+    <div ng-controller="contentController">
+      <tabset>
+        <tab ng-repeat="item in items" heading="{{item.name}}">
+          <div class="container lighter"  ng-style="{'width': model.width + 'px'}">
+              <text-angular name="{{item.name}}" ng-model="item.html" ta-text-editor-class="form-content" ta-html-editor-class="form-content" ta-focussed-class="focussed"></text-angular>
+          </div>
+          <div class="row">
+            <button type="button" class="btn btn-sm btn-success" ng-click="open('sm')" ng-style="{'margin-left':10+'px'}">add</button>
+            <button type="button" class="btn btn-sm btn-info" ng-click="updateContent(item)">Save</button>
+            <button type="button" class="btn btn-sm btn-danger" ng-click="warning(item)">delete</button>
         </div>
-        <br>
-        <div class="container text-center lighter border-around" ng-style="
-        {'width': model.width + 'px'}">
-            <div class="lighter roboto">
-                <p ng-bind-html="htmlContent" class="text-left text-med text-gray"></p>
-            </div>
-        </div>
+        </tab>
+      </tabset>
     </div>
+        <script type="text/ng-template" id="addContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Create New Content!</h3>
+            </div>
+            <div class="modal-body">
+                Content Name: <input name="name" ng-model="item.name" /><span ng-model="item.html"></span>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="ok(item)">OK</button>
+                <button class="btn btn-warning" type="button" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="deleteContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Create New Content!</h3>
+            </div>
+            <div class="modal-body">
+                <h2>Are you sure to delete this content?</h2>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="ok(item)">OK</button>
+                <button class="btn btn-warning" type="button" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+            </div>
+        </script>

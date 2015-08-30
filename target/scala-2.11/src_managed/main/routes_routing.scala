@@ -1,6 +1,6 @@
 // @SOURCE:/Users/mingxiangzhu/Desktop/anormDemo/conf/routes
-// @HASH:461fe3b9800e1f59179cb678c4850d8e8ce28fd1
-// @DATE:Tue Aug 18 10:11:52 EDT 2015
+// @HASH:41f556be97923c5c3952d72e94f387b164e2a3f4
+// @DATE:Sat Aug 29 16:52:05 EDT 2015
 
 
 import play.core._
@@ -122,13 +122,41 @@ controllers.GraphGenerator.randomGraph,
 HandlerDef(this.getClass.getClassLoader, "", "controllers.GraphGenerator", "randomGraph", Nil,"GET", """graph""", Routes.prefix + """graph"""))
         
 
+// @LINE:29
+private[this] lazy val controllers_ExpContent_getContent13_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("contentlist/"),DynamicPart("exp_id", """[^/]+""",true))))
+private[this] lazy val controllers_ExpContent_getContent13_invoker = createInvoker(
+controllers.ExpContent.getContent(fakeValue[Long]),
+HandlerDef(this.getClass.getClassLoader, "", "controllers.ExpContent", "getContent", Seq(classOf[Long]),"GET", """content Controller""", Routes.prefix + """contentlist/$exp_id<[^/]+>"""))
+        
+
 // @LINE:30
-private[this] lazy val controllers_Assets_versioned13_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
-private[this] lazy val controllers_Assets_versioned13_invoker = createInvoker(
+private[this] lazy val controllers_ExpContent_addContent14_route = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("addcontent"))))
+private[this] lazy val controllers_ExpContent_addContent14_invoker = createInvoker(
+controllers.ExpContent.addContent,
+HandlerDef(this.getClass.getClassLoader, "", "controllers.ExpContent", "addContent", Nil,"POST", """""", Routes.prefix + """addcontent"""))
+        
+
+// @LINE:31
+private[this] lazy val controllers_ExpContent_updateContent15_route = Route("PUT", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("updatecontent"))))
+private[this] lazy val controllers_ExpContent_updateContent15_invoker = createInvoker(
+controllers.ExpContent.updateContent,
+HandlerDef(this.getClass.getClassLoader, "", "controllers.ExpContent", "updateContent", Nil,"PUT", """""", Routes.prefix + """updatecontent"""))
+        
+
+// @LINE:32
+private[this] lazy val controllers_ExpContent_deleteContent16_route = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("deletecontent"))))
+private[this] lazy val controllers_ExpContent_deleteContent16_invoker = createInvoker(
+controllers.ExpContent.deleteContent,
+HandlerDef(this.getClass.getClassLoader, "", "controllers.ExpContent", "deleteContent", Nil,"POST", """""", Routes.prefix + """deletecontent"""))
+        
+
+// @LINE:35
+private[this] lazy val controllers_Assets_versioned17_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
+private[this] lazy val controllers_Assets_versioned17_invoker = createInvoker(
 controllers.Assets.versioned(fakeValue[String], fakeValue[Asset]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "versioned", Seq(classOf[String], classOf[Asset]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """explist""","""controllers.Application.getExps"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """paramlist/$exp_id<[^/]+>""","""controllers.Application.getParams(exp_id:Long)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """addparam""","""controllers.Application.addParameter"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """updateparam""","""controllers.Application.updateParameter"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """deleteparam""","""controllers.Application.deleteParameter"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """d3""","""controllers.Application.d3"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """myjson""","""controllers.Application.d3json"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """ace""","""controllers.Application.ace"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """textAngular""","""controllers.Application.textAngular"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """dialog""","""controllers.Application.dialog"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """graph""","""controllers.GraphGenerator.randomGraph"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.versioned(path:String = "/public", file:Asset)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+def documentation = List(("""GET""", prefix,"""controllers.Application.index"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """explist""","""controllers.Application.getExps"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """paramlist/$exp_id<[^/]+>""","""controllers.Application.getParams(exp_id:Long)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """addparam""","""controllers.Application.addParameter"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """updateparam""","""controllers.Application.updateParameter"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """deleteparam""","""controllers.Application.deleteParameter"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """d3""","""controllers.Application.d3"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """myjson""","""controllers.Application.d3json"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """ace""","""controllers.Application.ace"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """textAngular""","""controllers.Application.textAngular"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """dialog""","""controllers.Application.dialog"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """graph""","""controllers.GraphGenerator.randomGraph"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """contentlist/$exp_id<[^/]+>""","""controllers.ExpContent.getContent(exp_id:Long)"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """addcontent""","""controllers.ExpContent.addContent"""),("""PUT""", prefix + (if(prefix.endsWith("/")) "" else "/") + """updatecontent""","""controllers.ExpContent.updateContent"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """deletecontent""","""controllers.ExpContent.deleteContent"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.versioned(path:String = "/public", file:Asset)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]]
 }}
@@ -240,10 +268,42 @@ case controllers_GraphGenerator_randomGraph12_route(params) => {
 }
         
 
+// @LINE:29
+case controllers_ExpContent_getContent13_route(params) => {
+   call(params.fromPath[Long]("exp_id", None)) { (exp_id) =>
+        controllers_ExpContent_getContent13_invoker.call(controllers.ExpContent.getContent(exp_id))
+   }
+}
+        
+
 // @LINE:30
-case controllers_Assets_versioned13_route(params) => {
+case controllers_ExpContent_addContent14_route(params) => {
+   call { 
+        controllers_ExpContent_addContent14_invoker.call(controllers.ExpContent.addContent)
+   }
+}
+        
+
+// @LINE:31
+case controllers_ExpContent_updateContent15_route(params) => {
+   call { 
+        controllers_ExpContent_updateContent15_invoker.call(controllers.ExpContent.updateContent)
+   }
+}
+        
+
+// @LINE:32
+case controllers_ExpContent_deleteContent16_route(params) => {
+   call { 
+        controllers_ExpContent_deleteContent16_invoker.call(controllers.ExpContent.deleteContent)
+   }
+}
+        
+
+// @LINE:35
+case controllers_Assets_versioned17_route(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned13_invoker.call(controllers.Assets.versioned(path, file))
+        controllers_Assets_versioned17_invoker.call(controllers.Assets.versioned(path, file))
    }
 }
         

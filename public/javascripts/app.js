@@ -1,4 +1,4 @@
-var root = angular.module('root',['ui.bootstrap', 'textAngular'])
+var root = angular.module('root',['ngAnimate','ui.bootstrap', 'textAngular'])
 //parameter adding and editing
 root.controller('ngSelect', function($scope) {
 	$scope.optionsData =
@@ -190,8 +190,7 @@ return {
     model: '=',
     dialogs: '=',
     globals: '=',
-		expid: '=',
-		items: '='
+		expid: '='
   },
   templateUrl: 'assets/dialog/dialog.html',
   link: function(scope, element, attrs) {
@@ -292,7 +291,121 @@ return {
 };
 });
 
-//text angular controller
-root.controller("textEditorController", function demoController($scope) {
-  $scope.htmlContent = '<h2>Try me!</h2><p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p><p><b>Features:</b></p><ol><li>Automatic Seamless Two-Way-Binding</li><li style="color: blue;">Super Easy <b>Theming</b> Options</li><li>Simple Editor Instance Creation</li><li>Safely Parses Html for Custom Toolbar Icons</li><li>Doesn&apos;t Use an iFrame</li><li>Works with Firefox, Chrome, and IE9+</li></ol><p><b>Code at GitHub:</b> <a href="https://github.com/fraywing/textAngular">Here</a> </p>';
+//Content controller
+root.controller("contentController", function ($scope, $http, $modal){
+	//modal operations
+	$scope.animationsEnabled = false;
+	$scope.open = function (size) {
+	 var modalInstance = $modal.open({
+		 animation: $scope.animationsEnabled,
+		 templateUrl: 'addContent.html',
+		 controller: 'ModalInstanceCtrl',
+		 size: size
+	 });
+
+	 modalInstance.result.then(function (item) {
+		 //defualt html
+		 item.html = "Edit your content here!";
+		 $scope.addContent(item);
+	 });
+ };
+
+ $scope.warning = function (item) {
+	var modalInstance = $modal.open({
+		animation: $scope.animationsEnabled,
+		templateUrl: 'deleteContent.html',
+		controller: 'deleteModalInstanceCtrl',
+		size: 'sm'
+	});
+
+	modalInstance.result.then(function () {
+		$scope.removeContent(item);
+	});
+};
+
+	//item operations
+	$scope.items = []
+	$scope.getExpContents = function(){
+		if($scope.expid != null && $scope.expid != undefined && $scope.expid != ""){
+			var httpRequest = $http({
+				method: 'GET',
+				url: "/contentlist/" + $scope.expid
+			}).success(function(data, status){
+				$scope.items = data;
+			}).error(function(arg){
+				console.log(arg);
+			});
+		}
+		else{
+			$scope.items = [];
+		}
+	}
+
+	$scope.$watch('expid', $scope.getExpContents);
+
+	$scope.addContent = function(addItem){
+		addItem.experiment_id = $scope.expid;
+		addItem.id = 0;//dummy id
+		console.log(JSON.stringify(addItem));
+		var req = $http({
+			method:'POST',
+			url:'/addcontent',
+			data:addItem
+		}).success(function(data, status){
+			console.log(data);
+			//re-get the list
+			$scope.getExpContents($scope.expid);
+		}).error(function(data, status){
+			console.log(data);
+		});
+	}
+
+	$scope.updateContent = function(item){
+		console.log(JSON.stringify(item));
+		var req = $http({
+			method:'PUT',
+			url:'/updatecontent',
+			data:item
+		}).success(function(data, status){
+			console.log(data);
+		}).error(function(arg){
+			console.log("error");
+		});
+	}
+
+	$scope.removeContent = function(item){
+		console.log(JSON.stringify(item));
+		var req = $http({
+			method:'POST',
+			url:'/deletecontent',
+			data:item
+		}).success(function(data, status){
+			console.log(data);
+			$scope.getExpContents($scope.expid);
+		}).error(function(arg){
+			console.log("error");
+		});
+	}
+
+});
+
+
+root.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+  $scope.ok = function (item) {
+    $modalInstance.close(item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
+
+root.controller('deleteModalInstanceCtrl', function ($scope, $modalInstance) {
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
 });

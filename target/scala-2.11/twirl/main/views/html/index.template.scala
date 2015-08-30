@@ -33,7 +33,7 @@ Seq[Any](format.raw/*2.4*/("""
 	  </ul>
   		<div id='container'>
   		  <div ng-repeat='dialog in dialogs|filter:"""),format.raw/*15.48*/("""{"""),format.raw/*15.49*/("""minimized:false"""),format.raw/*15.64*/("""}"""),format.raw/*15.65*/("""'>
-  		    <make-dialog model='dialog' dialogs='dialogs' globals='globals' expid='experiment_id' items='items'></make-dialog>
+  		    <make-dialog model='dialog' dialogs='dialogs' globals='globals' expid='experiment_id'></make-dialog>
   		  </div>
   		</div>
 
@@ -60,10 +60,10 @@ Seq[Any](format.raw/*2.4*/("""
 }
               /*
                   -- GENERATED --
-                  DATE: Sat Aug 29 10:23:59 EDT 2015
+                  DATE: Sat Aug 29 10:46:07 EDT 2015
                   SOURCE: /Users/mingxiangzhu/Desktop/anormDemo/app/views/index.scala.html
-                  HASH: 47f65751d155cf38395978f2ac54821066bcb59e
-                  MATRIX: 498->2|587->4|615->7|642->26|681->28|710->31|1002->295|1031->296|1060->297|1103->312|1132->313|1161->314|1195->321|1325->423|1354->424|1397->439|1426->440|1865->849
+                  HASH: 70273431cd71c539e7fe31e44782b4b4133e8aea
+                  MATRIX: 498->2|587->4|615->7|642->26|681->28|710->31|1002->295|1031->296|1060->297|1103->312|1132->313|1161->314|1195->321|1325->423|1354->424|1397->439|1426->440|1851->835
                   LINES: 19->2|22->2|24->4|24->4|24->4|25->5|30->10|30->10|30->10|30->10|30->10|30->10|31->11|35->15|35->15|35->15|35->15|50->30
                   -- GENERATED --
               */

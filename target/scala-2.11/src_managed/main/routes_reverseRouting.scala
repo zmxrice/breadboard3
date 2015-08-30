@@ -1,6 +1,6 @@
 // @SOURCE:/Users/mingxiangzhu/Desktop/anormDemo/conf/routes
-// @HASH:461fe3b9800e1f59179cb678c4850d8e8ce28fd1
-// @DATE:Tue Aug 18 10:11:52 EDT 2015
+// @HASH:41f556be97923c5c3952d72e94f387b164e2a3f4
+// @DATE:Sat Aug 29 16:52:05 EDT 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -14,7 +14,11 @@ import _root_.controllers.Assets.Asset
 import Router.queryString
 
 
+// @LINE:35
+// @LINE:32
+// @LINE:31
 // @LINE:30
+// @LINE:29
 // @LINE:26
 // @LINE:23
 // @LINE:20
@@ -44,14 +48,52 @@ def randomGraph(): Call = {
 }
                           
 
-// @LINE:30
+// @LINE:35
 class ReverseAssets {
 
 
-// @LINE:30
+// @LINE:35
 def versioned(file:Asset): Call = {
    implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[Asset]].unbind("file", file))
+}
+                        
+
+}
+                          
+
+// @LINE:32
+// @LINE:31
+// @LINE:30
+// @LINE:29
+class ReverseExpContent {
+
+
+// @LINE:30
+def addContent(): Call = {
+   import ReverseRouteContext.empty
+   Call("POST", _prefix + { _defaultPrefix } + "addcontent")
+}
+                        
+
+// @LINE:29
+def getContent(exp_id:Long): Call = {
+   import ReverseRouteContext.empty
+   Call("GET", _prefix + { _defaultPrefix } + "contentlist/" + implicitly[PathBindable[Long]].unbind("exp_id", exp_id))
+}
+                        
+
+// @LINE:32
+def deleteContent(): Call = {
+   import ReverseRouteContext.empty
+   Call("POST", _prefix + { _defaultPrefix } + "deletecontent")
+}
+                        
+
+// @LINE:31
+def updateContent(): Call = {
+   import ReverseRouteContext.empty
+   Call("PUT", _prefix + { _defaultPrefix } + "updatecontent")
 }
                         
 
@@ -163,7 +205,11 @@ def login(): Call = {
                   
 
 
+// @LINE:35
+// @LINE:32
+// @LINE:31
 // @LINE:30
+// @LINE:29
 // @LINE:26
 // @LINE:23
 // @LINE:20
@@ -198,16 +244,70 @@ def randomGraph : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:30
+// @LINE:35
 class ReverseAssets {
 
 
-// @LINE:30
+// @LINE:35
 def versioned : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.versioned",
    """
       function(file) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[PathBindable[Asset]].javascriptUnbind + """)("file", file)})
+      }
+   """
+)
+                        
+
+}
+              
+
+// @LINE:32
+// @LINE:31
+// @LINE:30
+// @LINE:29
+class ReverseExpContent {
+
+
+// @LINE:30
+def addContent : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.ExpContent.addContent",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "addcontent"})
+      }
+   """
+)
+                        
+
+// @LINE:29
+def getContent : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.ExpContent.getContent",
+   """
+      function(exp_id) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "contentlist/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("exp_id", exp_id)})
+      }
+   """
+)
+                        
+
+// @LINE:32
+def deleteContent : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.ExpContent.deleteContent",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "deletecontent"})
+      }
+   """
+)
+                        
+
+// @LINE:31
+def updateContent : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.ExpContent.updateContent",
+   """
+      function() {
+      return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "updatecontent"})
       }
    """
 )
@@ -369,7 +469,11 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
+// @LINE:35
+// @LINE:32
+// @LINE:31
 // @LINE:30
+// @LINE:29
 // @LINE:26
 // @LINE:23
 // @LINE:20
@@ -399,13 +503,47 @@ def randomGraph(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 }
                           
 
-// @LINE:30
+// @LINE:35
 class ReverseAssets {
 
 
-// @LINE:30
+// @LINE:35
 def versioned(path:String, file:Asset): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.versioned(path, file), HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "versioned", Seq(classOf[String], classOf[Asset]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
+)
+                      
+
+}
+                          
+
+// @LINE:32
+// @LINE:31
+// @LINE:30
+// @LINE:29
+class ReverseExpContent {
+
+
+// @LINE:30
+def addContent(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.ExpContent.addContent(), HandlerDef(this.getClass.getClassLoader, "", "controllers.ExpContent", "addContent", Seq(), "POST", """""", _prefix + """addcontent""")
+)
+                      
+
+// @LINE:29
+def getContent(exp_id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.ExpContent.getContent(exp_id), HandlerDef(this.getClass.getClassLoader, "", "controllers.ExpContent", "getContent", Seq(classOf[Long]), "GET", """content Controller""", _prefix + """contentlist/$exp_id<[^/]+>""")
+)
+                      
+
+// @LINE:32
+def deleteContent(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.ExpContent.deleteContent(), HandlerDef(this.getClass.getClassLoader, "", "controllers.ExpContent", "deleteContent", Seq(), "POST", """""", _prefix + """deletecontent""")
+)
+                      
+
+// @LINE:31
+def updateContent(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.ExpContent.updateContent(), HandlerDef(this.getClass.getClassLoader, "", "controllers.ExpContent", "updateContent", Seq(), "PUT", """""", _prefix + """updatecontent""")
 )
                       
 
