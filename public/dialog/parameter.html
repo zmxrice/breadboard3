@@ -41,8 +41,8 @@
 
         </div>
       </form>
-      <form name="updateForm" novalidate ng-repeat="item in items">
-        <div class="row">
+      <form novalidate >
+        <div class="row" ng-repeat="item in items">
           <div class="col-md-2">
             <input type="text" class="form-control" ng-model="item.name" required />
           </div>
